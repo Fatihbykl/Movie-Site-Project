@@ -1,0 +1,16 @@
+﻿@model WebProgramlamaProje.Models.RegisterModel
+@{
+}
+
+<div class="login-div">
+    <form method="post" asp-action="Signup" class="login-form">
+        <div class="text-danger" asp-validation-summary="All"></div>
+        <h3>Sign Up Form</h3>
+        <input asp-for="Name" type="text" placeholder="Name"/>
+        <input asp-for="UserName" type="text" placeholder="Username"/>
+        <input asp-for="Email" type="text" placeholder="Email"/>
+        <input asp-for="Password" type="text" placeholder="Set Password"/>
+        <small><a asp-action="signin">Already have an account?</a></small>
+        <button type="submit">Sign Up</button>
+    </form>
+</div>

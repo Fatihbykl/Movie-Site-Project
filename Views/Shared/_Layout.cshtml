@@ -1,0 +1,77 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Proje</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/css/style.css" />
+    <script src="https://kit.fontawesome.com/df18e69f5a.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light header-bg header-font box-shadow">
+            <div class="container max-width-950">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Proje</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+                    <ul class="navbar-nav">
+                        @{ if (User.Identity.IsAuthenticated)
+                            {
+                                <li class="nav-item">
+                                    <a class="" asp-area="" asp-controller="Home" asp-action="Index">HOME</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="" asp-area="" asp-controller="Home" asp-action="Index">PROFILE</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="" asp-area="" asp-controller="Home" asp-action="Privacy">ACTIVITY</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="" asp-area="" asp-controller="User" asp-action="Logout">LOGOUT</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="" asp-area="" asp-controller="Home" asp-action="Privacy">
+                                        <span class="badge-log">
+                                            <i class="fas fa-plus mr-2"></i>LOG
+                                        </span>
+                                    </a>
+                                </li>
+                            }
+                            else
+                            {
+                                <li class="nav-item">
+                                    <a class="" asp-area="" asp-controller="User" asp-action="Signin">SIGN IN</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="" asp-area="" asp-controller="User" asp-action="Signup">CREATE ACCOUNT</a>
+                                </li>
+                            }
+                        }
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="content">
+        <div class="container max-width-950">
+            <main role="main" class="pb-3">
+                @RenderBody()
+            </main>
+        </div>
+    </div>
+    <footer class="footer text-muted footer">
+        <div class="container max-width-950">
+            &copy; 2020 - Proje - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>
