@@ -200,44 +200,48 @@ div.hr-border {
 
 /* ### Profile ### */
 
-.profile-header {
-
-}
-
 .profile-header img {
-    width: 100px;
-    height: 100px;
+    width: 30px;
+    height: 30px;
     border: 1px solid #24303c;
     border-radius: 50%;
-    margin-left:10px;
 }
 
-.profile-header .profile-username {
-    font-size: 22px;
+.profile-header .img-username {
+    margin-right: 150px!important;
+}
+
+.profile-header span {
+    font-weight: bold;
     color: white;
-}
-
-.profile-header .profile-last-seen {
-    float: right;
 }
 
 .profile-header .profile-nav {
     border: 1px solid #24303c;
     margin-top: 20px;
     border-radius: 5px;
+    background-color: #2C3440;
 }
 
 .profile-header .profile-nav ul {
     display: flex;
     list-style: none;
     margin: 0;
-    padding: 15px 30px;
+    padding: 10px 25px;
 }
 
 .profile-header .profile-nav ul li{
     margin-right: 20px;
 }
 
+.edit-profile-wrap {
+    max-width: 500px;
+    margin: auto;
+    padding-top: 30px;
+}
 
+.edit-profile-wrap input {
+    margin-bottom: 25px;
+}
 
 /* ### Profile End ### */

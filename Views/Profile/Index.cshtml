@@ -3,26 +3,13 @@
     ViewData["Title"] = String.Format("{0}'s Profile", Model.UserName);
 }
 
+
 <div class="profile-header">
-    <div class="row">
-        <div class="col-md-2 pr-0">
-            <img src="~/media/profile-user.png"/>
-        </div>
-        <div class="col-md-6 pl-0 pt-3">
-            <div class="profile-username">
-                @Model.UserName <br />
-                <span>390 Films</span>
-            </div>
-        </div>
-        <div class="col-md-4 pt-4">
-            <div class="profile-last-seen">
-                Last Activity: tarih <br />
-                Profile Created: tarih
-            </div>
-        </div>
-    </div>
     <nav class="profile-nav">
         <ul>
+            <li class="img-username">
+                <img src="~/media/profile-user.png" /> <span>@Model.UserName</span>
+            </li>
             <li>Profile</li>
             <li>Films</li>
             <li>Reviews</li>
@@ -30,69 +17,74 @@
         </ul>
     </nav>
 </div>
-<div>
-    <h2 class="col-heading">
-        favorite films
-    </h2>
-    <div class="row">
-        <div class="col-md-3">
-            <div class="border-456">
-                <img width="150" height="225" src="~/media/oslo.jpg" />
+<div class="row">
+    <div class="col-md-9">
+        <h2 class="col-heading">
+            favorite films
+        </h2>
+        <div class="row">
+            <div class="col-md-3">
+                <div class="border-456">
+                    <img width="150" height="225" src="~/media/oslo.jpg" />
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="border-456">
+                    <img width="150" height="225" src="~/media/oslo.jpg" />
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="border-456">
+                    <img width="150" height="225" src="~/media/oslo.jpg" />
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="border-456">
+                    <img width="150" height="225" src="~/media/oslo.jpg" />
+                </div>
             </div>
         </div>
-        <div class="col-md-3">
-            <div class="border-456">
-                <img width="150" height="225" src="~/media/oslo.jpg" />
+        <h2 class="col-heading">
+            recent activity
+        </h2>
+        <div class="row">
+            <div class="col-md-3">
+                <div class="border-456">
+                    <img width="150" height="225" src="~/media/oslo.jpg" />
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="border-456">
+                    <img width="150" height="225" src="~/media/oslo.jpg" />
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="border-456">
+                    <img width="150" height="225" src="~/media/oslo.jpg" />
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="border-456">
+                    <img width="150" height="225" src="~/media/oslo.jpg" />
+                </div>
             </div>
         </div>
-        <div class="col-md-3">
-            <div class="border-456">
-                <img width="150" height="225" src="~/media/oslo.jpg" />
+        <h2 class="col-heading">
+            Recent Reviews
+        </h2>
+        <div class="review">
+            <img src="~/media/oslo.jpg" />
+            <div class="pt-3">
+                <i class="fas fa-user-circle"></i> Fatihbykl
             </div>
-        </div>
-        <div class="col-md-3">
-            <div class="border-456">
-                <img width="150" height="225" src="~/media/oslo.jpg" />
+            <div class="review-movie-title pt-1">Oslo, 31 August <small>(2013)</small></div>
+            <div class="pt-1">5 Star</div>
+            <div class="review-text">
+                this was one of the most joyous experiences i’ve had all year and no i’m not joking in the slightest
             </div>
         </div>
     </div>
-    <h2 class="col-heading">
-        recent activity
-    </h2>
-    <div class="row">
-        <div class="col-md-3">
-            <div class="border-456">
-                <img width="150" height="225" src="~/media/oslo.jpg" />
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="border-456">
-                <img width="150" height="225" src="~/media/oslo.jpg" />
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="border-456">
-                <img width="150" height="225" src="~/media/oslo.jpg" />
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="border-456">
-                <img width="150" height="225" src="~/media/oslo.jpg" />
-            </div>
-        </div>
-    </div>
-    <h2 class="col-heading">
-        Recent Reviews
-    </h2>
-    <div class="review">
-        <img src="~/media/oslo.jpg" />
-        <div class="pt-3">
-            <i class="fas fa-user-circle"></i> Fatihbykl
-        </div>
-        <div class="review-movie-title pt-1">Oslo, 31 August <small>(2013)</small></div>
-        <div class="pt-1">5 Star</div>
-        <div class="review-text">
-            this was one of the most joyous experiences i’ve had all year and no i’m not joking in the slightest
-        </div>
+    <div class="col-md-3">
+
     </div>
 </div>

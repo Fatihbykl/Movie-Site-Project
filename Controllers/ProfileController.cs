@@ -26,11 +26,10 @@ namespace WebProgramlamaProje.Controllers
         [Route("{username}/edit-profile")]
         public IActionResult EditProfile(string username)
         {
-            if(User.Identity.Name != username)
-            {
-                return Forbid();
-            }
-            return View();
+            if(User.Identity.Name != username) { return Forbid(); }
+            User user = userManager.Users.Where(x => x.UserName == username).FirstOrDefault();
+
+            return View(user);
         }
     }
 }

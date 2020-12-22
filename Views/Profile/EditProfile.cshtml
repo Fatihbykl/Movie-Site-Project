@@ -1,5 +1,31 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
+﻿@model WebProgramlamaProje.Models.User
+@{ 
+    ViewData["Title"] = "Edit Profile";
 }
+<div class="profile-header">
+    <nav class="profile-nav">
+        <ul>
+            <li class="img-username">
+                <img src="~/media/profile-user.png" /> <span>@Model.UserName</span>
+            </li>
+            <li>Profile</li>
+            <li>Films</li>
+            <li>Reviews</li>
+            <li>Edit Profile</li>
+        </ul>
+    </nav>
+</div>
+<h2 class="col-heading">
+    edit profile
+</h2>
+<div class="edit-profile-wrap">
+    <form method="post" action="/">
+        Username:
+        <input asp-for="UserName" class="form-control" disabled type="text" />
+        Name:
+        <input asp-for="Name" class="form-control" type="text" />
+        Email:
+        <input asp-for="Email" class="form-control" type="text" />
+        <button type="submit" class="btn btn-outline-success float-right">Save</button> 
+    </form>
+</div>
