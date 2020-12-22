@@ -195,3 +195,49 @@ div.hr-border {
 .login-div .login-form button:hover {
     background: #179b77;
 }
+
+/* ### Login Page End ### */
+
+/* ### Profile ### */
+
+.profile-header {
+
+}
+
+.profile-header img {
+    width: 100px;
+    height: 100px;
+    border: 1px solid #24303c;
+    border-radius: 50%;
+    margin-left:10px;
+}
+
+.profile-header .profile-username {
+    font-size: 22px;
+    color: white;
+}
+
+.profile-header .profile-last-seen {
+    float: right;
+}
+
+.profile-header .profile-nav {
+    border: 1px solid #24303c;
+    margin-top: 20px;
+    border-radius: 5px;
+}
+
+.profile-header .profile-nav ul {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 15px 30px;
+}
+
+.profile-header .profile-nav ul li{
+    margin-right: 20px;
+}
+
+
+
+/* ### Profile End ### */
