@@ -15,5 +15,6 @@ namespace WebProgramlamaProje.Data
         }
 
         public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<Movie> Movies { get; set; }
     }
 }

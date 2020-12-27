@@ -1,0 +1,39 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<div class="profile-header">
+    <nav class="profile-nav">
+        <ul>
+            <li class="img-username">
+                <img src="~/media/profile-user.png" /> <span>@Model.UserName</span>
+            </li>
+            <li><a asp-action="Index" asp-route-username="@User.Identity.Name">Profile</a></li>
+            <li class="active"><a asp-action="Films" asp-route-username="@User.Identity.Name">Films</a></li>
+            <li><a asp-action="Reviews" asp-route-username="@User.Identity.Name">Reviews</a></li>
+            <li><a asp-action="EditProfile" asp-route-username="@User.Identity.Name">Edit Profile</a></li>
+        </ul>
+    </nav>
+</div>
+<table class="films-table mt-5">
+    <tr>
+        <th>Date</th>
+        <th>Film</th>
+        <th>Released</th>
+        <th>Rating</th>
+        <th>Review</th>
+    </tr>
+    <tr>
+        <td>16 Haziran 2020</td>
+        <td class="film-title">
+            <img src="~/media/oslo.jpg" width="35" height="50" />
+            A Girl Walks Home Alone at Night
+        </td>
+        <td>2014</td>
+        <td>*****</td>
+        <td>
+            <i class="far fa-comment-dots"></i>
+        </td>
+    </tr>
+</table>

@@ -9,5 +9,6 @@ namespace WebProgramlamaProje.Models
     public class User : IdentityUser
     {
         public string Name { get; set; }
+        public virtual ICollection<Movie> WatchedMovies { get; set; }
     }
 }

@@ -8,10 +8,10 @@
             <li class="img-username">
                 <img src="~/media/profile-user.png" /> <span>@Model.UserName</span>
             </li>
-            <li>Profile</li>
-            <li>Films</li>
-            <li>Reviews</li>
-            <li>Edit Profile</li>
+            <li><a asp-action="Index" asp-route-username="@User.Identity.Name">Profile</a></li>
+            <li><a asp-action="Films" asp-route-username="@User.Identity.Name">Films</a></li>
+            <li><a asp-action="Reviews" asp-route-username="@User.Identity.Name">Reviews</a></li>
+            <li class="active"><a asp-action="EditProfile" asp-route-username="@User.Identity.Name">Edit Profile</a></li>
         </ul>
     </nav>
 </div>

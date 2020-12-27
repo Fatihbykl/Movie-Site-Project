@@ -227,11 +227,20 @@ div.hr-border {
     display: flex;
     list-style: none;
     margin: 0;
-    padding: 10px 25px;
 }
 
 .profile-header .profile-nav ul li{
     margin-right: 20px;
+    padding: 10px 5px;
+}
+
+.profile-header .profile-nav ul li a{
+   color: #9ab;
+}
+
+.profile-header .profile-nav ul li a:hover{
+   color: white;
+   transition-duration: .4s;
 }
 
 .edit-profile-wrap {
@@ -244,4 +253,45 @@ div.hr-border {
     margin-bottom: 25px;
 }
 
+.active {
+    border-bottom: 2px solid #00E054;
+}
+
+.active a {
+    color: white!important;
+}
+
 /* ### Profile End ### */
+
+/* ### Profile Films ### */
+
+.films-table {
+    width: 100%;
+}
+
+.films-table th {
+    background-color: #14181C;
+    padding: 5px 10px;
+}
+
+.films-table td {
+    padding: 5px 10px;
+}
+
+.films-table td img {
+    width: 45px;
+    height: 65px;
+    border-radius: 5px;
+    margin-right: 5px;
+}
+
+.films-table .film-title {
+    color: white;
+    font-weight: bold;
+    max-width: 300px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* ### Profile Films End ### */

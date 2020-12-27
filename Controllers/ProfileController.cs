@@ -31,5 +31,18 @@ namespace WebProgramlamaProje.Controllers
 
             return View(user);
         }
+        [Route("{username}/films")]
+        public IActionResult Films(string username)
+        {
+            User user = userManager.Users.Where(x => x.UserName == username).FirstOrDefault();
+            return View(user);
+        }
+
+        [Route("{username}/reviews")]
+        public IActionResult Reviews(string username)
+        {
+            User user = userManager.Users.Where(x => x.UserName == username).FirstOrDefault();
+            return View(user);
+        }
     }
 }
