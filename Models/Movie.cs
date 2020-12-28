@@ -16,8 +16,8 @@ namespace WebProgramlamaProje.Models
         public int Year { get; set; }
         public int Runtime { get; set; }
         public string Genres { get; set; }
-        public float ImdbRating { get; set; }
+        public string ImdbRating { get; set; }
         public string Director { get; set; }
-        public virtual ICollection<User> Viewers { get; set; }
+        public virtual ICollection<UserMovie> Viewers { get; set; }
     }
 }

@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebProgramlamaProje.Data;
 
 namespace WebProgramlamaProje.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20201228140403_imdbType")]
+    partial class imdbType
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -225,6 +227,21 @@ namespace WebProgramlamaProje.Data.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
+            modelBuilder.Entity("MovieUser", b =>
+                {
+                    b.Property<string>("ViewersId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("WatchedMoviesMovieID")
+                        .HasColumnType("int");
+
+                    b.HasKey("ViewersId", "WatchedMoviesMovieID");
+
+                    b.HasIndex("WatchedMoviesMovieID");
+
+                    b.ToTable("MovieUser");
+                });
+
             modelBuilder.Entity("WebProgramlamaProje.Models.Movie", b =>
                 {
                     b.Property<int>("MovieID")
@@ -244,8 +261,8 @@ namespace WebProgramlamaProje.Data.Migrations
                     b.Property<string>("ImageURL")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("ImdbRating")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<float>("ImdbRating")
+                        .HasColumnType("real");
 
                     b.Property<int>("Runtime")
                         .HasColumnType("int");
@@ -259,38 +276,6 @@ namespace WebProgramlamaProje.Data.Migrations
                     b.HasKey("MovieID");
 
                     b.ToTable("Movies");
-                });
-
-            modelBuilder.Entity("WebProgramlamaProje.Models.UserMovie", b =>
-                {
-                    b.Property<int>("IDUser")
-                        .HasColumnType("int");
-
-                    b.Property<int>("IDMovie")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int?>("MovieID")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Rating")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Review")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("userId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("IDUser", "IDMovie");
-
-                    b.HasIndex("MovieID");
-
-                    b.HasIndex("userId");
-
-                    b.ToTable("UserMovies");
                 });
 
             modelBuilder.Entity("WebProgramlamaProje.Models.User", b =>
@@ -354,29 +339,19 @@ namespace WebProgramlamaProje.Data.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("WebProgramlamaProje.Models.UserMovie", b =>
+            modelBuilder.Entity("MovieUser", b =>
                 {
-                    b.HasOne("WebProgramlamaProje.Models.Movie", "Movie")
-                        .WithMany("Viewers")
-                        .HasForeignKey("MovieID");
+                    b.HasOne("WebProgramlamaProje.Models.User", null)
+                        .WithMany()
+                        .HasForeignKey("ViewersId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.HasOne("WebProgramlamaProje.Models.User", "user")
-                        .WithMany("WatchedMovies")
-                        .HasForeignKey("userId");
-
-                    b.Navigation("Movie");
-
-                    b.Navigation("user");
-                });
-
-            modelBuilder.Entity("WebProgramlamaProje.Models.Movie", b =>
-                {
-                    b.Navigation("Viewers");
-                });
-
-            modelBuilder.Entity("WebProgramlamaProje.Models.User", b =>
-                {
-                    b.Navigation("WatchedMovies");
+                    b.HasOne("WebProgramlamaProje.Models.Movie", null)
+                        .WithMany()
+                        .HasForeignKey("WatchedMoviesMovieID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

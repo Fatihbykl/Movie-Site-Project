@@ -16,5 +16,12 @@ namespace WebProgramlamaProje.Data
 
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<Movie> Movies { get; set; }
+        public virtual DbSet<UserMovie> UserMovies{ get; set; }
+
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            base.OnModelCreating(builder);
+            builder.Entity<UserMovie>().HasKey(e => new { e.IDUser, e.IDMovie});
+        }
     }
 }
