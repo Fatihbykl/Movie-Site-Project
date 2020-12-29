@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using WebProgramlamaProje.Data;
 using WebProgramlamaProje.Models;
 
 namespace WebProgramlamaProje.Controllers
@@ -12,10 +13,12 @@ namespace WebProgramlamaProje.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly ApplicationDbContext _context;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, ApplicationDbContext context)
         {
             _logger = logger;
+            _context = context;
         }
 
         public IActionResult Index()
@@ -32,6 +35,13 @@ namespace WebProgramlamaProje.Controllers
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+
+        [HttpGet]
+        public JsonResult SearchMovie(string movie)
+        {
+            var result = _context.Movies.Where(x => x.Title.Contains(movie)).ToList();
+            return Json(result);
         }
     }
 }

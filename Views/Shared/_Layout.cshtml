@@ -68,29 +68,57 @@
         </div>
     </footer>
 
-    <!-- Modal -->
+    <!-- Search Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content modal-bg-color pt-3 pb-3 pl-4 pr-4">
-          <div class="modal-header border-0 modal-header-font">
-            <h5 class="modal-title" id="exampleModalLabel">search movie</h5>
-            <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <form method="get" action="/">
-                <input type="text" class="form-control" placeholder="Million Dollar Baby..."/>
-            </form>
-          </div>
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content modal-bg-color pt-3 pb-3 pl-4 pr-4">
+                <div class="modal-header border-0 modal-header-font">
+                    <h5 class="modal-title" id="exampleModalLabel">search movie</h5>
+                    <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form method="get" action="/">
+                        <input id="search-input" type="text" class="form-control" placeholder="Million Dollar Baby..." />
+                        <div id="dropdown-search" class="search-dropdown">
+                            <ul id="movie-list"></ul>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
+
 
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @RenderSection("Scripts", required: false)
+
+<script>
+        $(document).ready(function () {
+            $('#search-input').keyup(function (e) {
+                $('#movie-list').html('');
+                $.ajax({
+                    type: 'GET',
+                    url: "@Url.Action("SearchMovie","Home")" + "?movie=" + $('#search-input').val(),
+                    dataType: 'json',
+                    success: function (data) {
+                        $.each(data, function (index, element) {
+                            $('#movie-list').append(
+                                "<a href=\"/\"><li><span>"+ element.title + "(" + element.year + ") </span><small>" + element.director + "</small></li></a>"
+                            );
+                        })
+                    },
+                    error: function () {
+                        window.alert("Hata");
+                    }
+                })
+                $('#dropdown-search').show("fast");
+            })
+        })
+</script>
 </body>
 </html>
