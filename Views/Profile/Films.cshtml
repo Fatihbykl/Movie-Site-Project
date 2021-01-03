@@ -1,4 +1,5 @@
 ﻿@model IEnumerable<WebProgramlamaProje.Models.UserMovieQuery>
+@inject IViewLocalizer Localizer
 <div class="profile-header">
     <nav class="profile-nav">
         <ul>
@@ -8,7 +9,6 @@
             <li><a asp-action="Index" asp-route-username="@ViewBag.username">Profile</a></li>
             <li class="active"><a asp-action="Films" asp-route-username="@ViewBag.username">Films</a></li>
             <li><a asp-action="Reviews" asp-route-username="@ViewBag.username">Reviews</a></li>
-            <li><a asp-action="EditProfile" asp-route-username="@ViewBag.username">Edit Profile</a></li>
         </ul>
     </nav>
 </div>

@@ -1,0 +1,18 @@
+﻿@{
+}
+<div style="max-width:600px;margin:auto;">
+<h2 class="col-heading mb-4">add role</h2>
+<form method="post" asp-controller="Admin" asp-action="CreateRole">
+    Role Name:
+    <input name="roleName" type="text" class="form-control mb-3"/>
+    <button type="submit" class="btn btn-success">Submit</button>
+</form>
+<h2 class="col-heading mb-4">add role to user</h2>
+<form method="post" asp-controller="Admin" asp-action="AddRoleToUser">
+    Username:
+    <input name="username" type="text" class="form-control mb-3" />
+    Role Name:
+    <input name="roleName" type="text" class="form-control mb-3" />
+    <button type="submit" class="btn btn-success">Submit</button>
+</form>
+</div>

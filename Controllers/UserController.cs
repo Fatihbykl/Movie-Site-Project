@@ -44,6 +44,8 @@ namespace WebProgramlamaProje.Controllers
 
                 if (result.Succeeded)
                 {
+                    var currentUser = await userManager.FindByNameAsync(user.UserName);
+                    var roleResult = await userManager.AddToRoleAsync(currentUser,"user");
                     return RedirectToAction("Signin");
                 }
                 else

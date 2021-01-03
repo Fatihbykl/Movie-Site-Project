@@ -23,22 +23,34 @@
                         @{ if (User.Identity.IsAuthenticated)
                             {
                                 <li class="nav-item">
+                                    <label class="switch m-0">
+                                        <input id="local" type="checkbox" value="tr">
+                                        <span class="slider round"></span>
+                                    </label><b>TR</b>
+                                </li>
+                                <li class="nav-item">
                                     <a class="" asp-area="" asp-controller="Home" asp-action="Index">HOME</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="" asp-area="" asp-controller="Profile" asp-action="Index" asp-route-username="@User.Identity.Name">PROFILE</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="" asp-area="" asp-controller="Home" asp-action="Privacy">ACTIVITY</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="" asp-area="" asp-controller="User" asp-action="Logout">LOGOUT</a>
                                 </li>
+                                @if (User.IsInRole("admin"))
+                                {
+                                    <li class="nav-item">
+                                        <a class="" asp-area="" asp-controller="Admin" asp-action="Index">ADMIN PANEL</a>
+                                    </li>
+                                }
                                 <li class="nav-item">
                                     <button type="button" data-toggle="modal" data-target="#exampleModal" class="badge-log">
-                                        <i class="fas fa-plus mr-2"></i>LOG
+                                        <i class="fas fa-plus mr-2"></i>SEARCH
                                     </button>
                                 </li>
+
                             }
                             else
                             {
@@ -64,7 +76,7 @@
     </div>
     <footer class="footer text-muted footer">
         <div class="container max-width-950">
-            &copy; 2020 - Proje - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            &copy; 2020 - Proje
         </div>
     </footer>
 
@@ -98,27 +110,47 @@
     @RenderSection("Scripts", required: false)
 
 <script>
-        $(document).ready(function () {
-            $('#search-input').keyup(function (e) {
-                $('#movie-list').html('');
-                $.ajax({
-                    type: 'GET',
-                    url: "@Url.Action("SearchMovie","Home")" + "?movie=" + $('#search-input').val(),
-                    dataType: 'json',
-                    success: function (data) {
-                        $.each(data, function (index, element) {
-                            $('#movie-list').append(
-                                "<a href=\"../movie/" + element.movieID + "\"><li><span>"+ element.title + "(" + element.year + ") </span><small>" + element.director + "</small></li></a>"
-                            );
-                        })
-                    },
-                    error: function () {
-                        window.alert("Hata");
-                    }
-                })
-                $('#dropdown-search').show("fast");
-            })
-        })
+    $(document).ready(function () {
+
+        var url = window.location.href.split('?')[1]
+        if (url == 'culture=tr&ui-culture=tr') {
+            $('#local').prop('checked', true);
+        }
+
+        $('#search-input').keyup(function (e) {
+            $('#movie-list').html('');
+            $.ajax({
+                type: 'GET',
+                url: "@Url.Action("SearchMovie","Home")" + "?movie=" + $('#search-input').val(),
+                dataType: 'json',
+                success: function (data) {
+                    $.each(data, function (index, element) {
+                        $('#movie-list').append(
+                            "<a href=\"../movie/" + element.movieID + "\"><li><span>" + element.title + "(" + element.year + ") </span><small>" + element.director + "</small></li></a>"
+                        );
+                    })
+                },
+                error: function () {
+                    window.alert("Hata");
+                }
+            });
+            $('#dropdown-search').show("fast");
+        });
+
+        $('#local').click(function () {
+            var url = window.location.href.split('?')[0];
+            var culture;
+            if ($('#local').is(":checked")) {
+                culture = "?culture=tr&ui-culture=tr";
+            }
+            else {
+                culture = "?culture=en-US&ui-culture=en-US";
+            }
+            window.location.href = url + culture;
+        });
+    });
+
+        
 </script>
 </body>
 </html>

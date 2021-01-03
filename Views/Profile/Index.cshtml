@@ -1,6 +1,6 @@
-﻿@model WebProgramlamaProje.Models.User
+﻿@model dynamic
 @{
-    ViewData["Title"] = String.Format("{0}'s Profile", Model.UserName);
+    ViewData["Title"] = String.Format("{0}'s Profile", ViewBag.username);
 }
 @inject IViewLocalizer Localizer
 
@@ -13,76 +13,44 @@
             <li class="active"><a asp-action="Index" asp-route-username="@ViewBag.username" >Profile</a></li>
             <li><a asp-action="Films" asp-route-username="@ViewBag.username">Films</a></li>
             <li><a asp-action="Reviews" asp-route-username="@ViewBag.username">Reviews</a></li>
-            <li><a asp-action="EditProfile" asp-route-username="@ViewBag.username">Edit Profile</a></li>
         </ul>
     </nav>
 </div>
 <div class="row">
     <div class="col-md-9">
         <h2 class="col-heading">
-            favorite films
-        </h2>
-        <div class="row">
-            <div class="col-md-3">
-                <div class="border-456">
-                    <img width="150" height="225" src="~/media/oslo.jpg" />
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="border-456">
-                    <img width="150" height="225" src="~/media/oslo.jpg" />
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="border-456">
-                    <img width="150" height="225" src="~/media/oslo.jpg" />
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="border-456">
-                    <img width="150" height="225" src="~/media/oslo.jpg" />
-                </div>
-            </div>
-        </div>
-        <h2 class="col-heading">
             recent activity
         </h2>
         <div class="row">
-            <div class="col-md-3">
-                <div class="border-456">
-                    <img width="150" height="225" src="~/media/oslo.jpg" />
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="border-456">
-                    <img width="150" height="225" src="~/media/oslo.jpg" />
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="border-456">
-                    <img width="150" height="225" src="~/media/oslo.jpg" />
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="border-456">
-                    <img width="150" height="225" src="~/media/oslo.jpg" />
-                </div>
-            </div>
+            @{ foreach (var item in Model.act)
+                {
+                    <div class="col-md-3">
+                        <div class="border-456">
+                            <img width="150" height="225" src="@item.ImageURL" />
+                        </div>
+                    </div>
+                }
+            }
+
         </div>
         <h2 class="col-heading">
             Recent Reviews
         </h2>
-        <div class="review">
-            <img src="~/media/oslo.jpg" />
-            <div class="pt-3">
-                <i class="fas fa-user-circle"></i> Fatihbykl
-            </div>
-            <div class="review-movie-title pt-1">Oslo, 31 August <small>(2013)</small></div>
-            <div class="pt-1">5 Star</div>
-            <div class="review-text">
-                this was one of the most joyous experiences i’ve had all year and no i’m not joking in the slightest
-            </div>
-        </div>
+        @{ foreach (var item in Model.rev)
+            {
+                <div class="review">
+                    <img src="@item.ImageURL" />
+                    <div class="pt-3">
+                        <i class="fas fa-user-circle"></i> @item.UserName
+                    </div>
+                    <div class="review-movie-title pt-1">@item.Title <small>(@item.Year)</small></div>
+                    <div class="pt-1">@item.Rating</div>
+                    <div class="review-text">
+                        @item.Review
+                    </div>
+                </div>
+            }
+        }
     </div>
     <div class="col-md-3">
         <h2 class="col-heading">fatihbykl</h2>
