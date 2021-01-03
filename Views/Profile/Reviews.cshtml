@@ -1,33 +1,35 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model IEnumerable<WebProgramlamaProje.Models.UserMovieQuery>
 @{
 }
 <div class="profile-header">
     <nav class="profile-nav">
         <ul>
             <li class="img-username">
-                <img src="~/media/profile-user.png" /> <span>@Model.UserName</span>
+                <img src="~/media/profile-user.png" /> <span>@ViewBag.username</span>
             </li>
-            <li><a asp-action="Index" asp-route-username="@User.Identity.Name">Profile</a></li>
-            <li><a asp-action="Films" asp-route-username="@User.Identity.Name">Films</a></li>
-            <li class="active"><a asp-action="Reviews" asp-route-username="@User.Identity.Name">Reviews</a></li>
-            <li><a asp-action="EditProfile" asp-route-username="@User.Identity.Name">Edit Profile</a></li>
+            <li><a asp-action="Index" asp-route-username="@ViewBag.username">Profile</a></li>
+            <li><a asp-action="Films" asp-route-username="@ViewBag.username">Films</a></li>
+            <li class="active"><a asp-action="Reviews" asp-route-username="@ViewBag.username">Reviews</a></li>
+            <li><a asp-action="EditProfile" asp-route-username="@ViewBag.username">Edit Profile</a></li>
         </ul>
     </nav>
 </div>
 <div class="reviews">
     <div class="row">
-        <div class="col-md-2">
-            <img src="~/media/oslo.jpg"/>
-        </div>
-        <div class="col-md-10">
-            <h3>Oslo, 31 August <small>2010</small></h3>
-            <div class="review-rating">***** watched 31 august</div>
-            <div class="review-desc">Oyun dünyası filme çok güzel yedirilmiş. 
-            Bazı sahnelerde oyun oynuyormuş hissi uyandırıyor. 
-            Espriler desen yeri geliyor kahkaha attırıyor. 
-            Sonuç olarak 1 saat 52 dakika sıkmadan akan bir film.</div>
-        </div>
+        @{ foreach (var item in Model)
+            {
+                <div class="col-md-2">
+                    <img src="@item.ImageURL" />
+                </div>
+                <div class="col-md-10">
+                    <h3>@item.Title <small>@item.Year</small></h3>
+                    <div class="review-rating">@item.Rating watched @item.Date</div>
+                    <div class="review-desc">
+                        @item.Review
+                    </div>
+                </div>
+            }
+
+        }
     </div>
 </div>

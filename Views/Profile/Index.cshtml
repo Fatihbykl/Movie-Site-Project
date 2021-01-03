@@ -2,18 +2,18 @@
 @{
     ViewData["Title"] = String.Format("{0}'s Profile", Model.UserName);
 }
-
+@inject IViewLocalizer Localizer
 
 <div class="profile-header">
     <nav class="profile-nav">
         <ul>
             <li class="img-username">
-                <img src="~/media/profile-user.png" /> <span>@Model.UserName</span>
+                <img src="~/media/profile-user.png" /> <span>@ViewBag.username</span>
             </li>
-            <li class="active"><a asp-action="Index" asp-route-username="@User.Identity.Name" >Profile</a></li>
-            <li><a asp-action="Films" asp-route-username="@User.Identity.Name">Films</a></li>
-            <li><a asp-action="Reviews" asp-route-username="@User.Identity.Name">Reviews</a></li>
-            <li><a asp-action="EditProfile" asp-route-username="@User.Identity.Name">Edit Profile</a></li>
+            <li class="active"><a asp-action="Index" asp-route-username="@ViewBag.username" >Profile</a></li>
+            <li><a asp-action="Films" asp-route-username="@ViewBag.username">Films</a></li>
+            <li><a asp-action="Reviews" asp-route-username="@ViewBag.username">Reviews</a></li>
+            <li><a asp-action="EditProfile" asp-route-username="@ViewBag.username">Edit Profile</a></li>
         </ul>
     </nav>
 </div>
@@ -89,5 +89,6 @@
         Films: 389
         Reviews: 5
         Last Online: tarih
+        @Localizer["hi"].Value
     </div>
 </div>
