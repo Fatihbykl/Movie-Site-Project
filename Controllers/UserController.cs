@@ -38,6 +38,7 @@ namespace WebProgramlamaProje.Controllers
                     Name = model.Name,
                     UserName = model.UserName,
                     Email = model.Email,
+                    EmailConfirmed = true,
                 };
                 var result = await userManager.CreateAsync(user, model.Password);
 

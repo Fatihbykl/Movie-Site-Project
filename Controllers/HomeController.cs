@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
@@ -23,7 +24,78 @@ namespace WebProgramlamaProje.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            List<Movie> movies = new List<Movie>();
+            var randomMovies = _context.Movies.OrderBy(r => Guid.NewGuid()).Take(6).ToList();
+            var lastReviews = _context.UserMovies
+                                .Where(s => s.Review != null)
+                                .Select(s => new
+                                {
+                                    Rating = s.Rating,
+                                    Review = s.Review,
+                                    Date = s.Date,
+                                    Title = s.movie.Title,
+                                    ImageURL = s.movie.ImageURL,
+                                    Year = s.movie.Year,
+                                    MovieID = s.movie.MovieID,
+                                    UserName = s.user.UserName,
+                                })
+                                .Distinct()
+                                .OrderByDescending(s => s.Date)
+                                .Take(4);
+            List<UserMovieQuery> result = new List<UserMovieQuery>();
+            foreach (var item in lastReviews)
+            {
+                var obj = new UserMovieQuery()
+                {
+                    Rating = item.Rating,
+                    Review = item.Review,
+                    Date = item.Date,
+                    Title = item.Title,
+                    ImageURL = item.ImageURL,
+                    MovieID = item.MovieID,
+                    Year = item.Year,
+                    UserName = item.UserName,
+                };
+                result.Add(obj);
+            }
+
+            var lastActivities = _context.UserMovies
+                                .Select(s => new
+                                {
+                                    Rating = s.Rating,
+                                    Review = s.Review,
+                                    Date = s.Date,
+                                    Title = s.movie.Title,
+                                    ImageURL = s.movie.ImageURL,
+                                    Year = s.movie.Year,
+                                    MovieID = s.movie.MovieID,
+                                    UserName = s.user.UserName,
+                                })
+                                .Distinct()
+                                .OrderByDescending(s => s.Date)
+                                .Take(6);
+            List<UserMovieQuery> resultActivities = new List<UserMovieQuery>();
+            foreach (var item in lastActivities)
+            {
+                var obj = new UserMovieQuery()
+                {
+                    Rating = item.Rating,
+                    Review = item.Review,
+                    Date = item.Date,
+                    Title = item.Title,
+                    ImageURL = item.ImageURL,
+                    MovieID = item.MovieID,
+                    Year = item.Year,
+                    UserName = item.UserName,
+                };
+                resultActivities.Add(obj);
+            }
+
+            dynamic model = new System.Dynamic.ExpandoObject();
+            model.randomMovies = randomMovies;
+            model.lastReviews = result;
+            model.lastActivities = resultActivities;
+            return View(model);
         }
 
         public IActionResult Privacy()

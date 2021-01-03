@@ -108,7 +108,7 @@
                     success: function (data) {
                         $.each(data, function (index, element) {
                             $('#movie-list').append(
-                                "<a href=\"/\"><li><span>"+ element.title + "(" + element.year + ") </span><small>" + element.director + "</small></li></a>"
+                                "<a href=\"../movie/" + element.movieID + "\"><li><span>"+ element.title + "(" + element.year + ") </span><small>" + element.director + "</small></li></a>"
                             );
                         })
                     },

@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace WebProgramlamaProje.Data.Migrations
+namespace WebProgramlamaProje.Migrations
 {
-    public partial class imdbType : Migration
+    public partial class userMovieVar : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

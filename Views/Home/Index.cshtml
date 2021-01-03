@@ -1,5 +1,5 @@
 ﻿@using Microsoft.AspNetCore.Http;
-@model WebProgramlamaProje.Models.User
+@model dynamic
 @{
     ViewData["Title"] = "Home Page";
 }
@@ -12,162 +12,57 @@
     new activities
 </h2>
 <div class="row">
-    <div class="col-lg-2 col-md-3 col-sm-2">
-        <div class="border-456">
-            <img width="150" height="225" src="~/media/oslo.jpg" />
-            <div class="activity-col-info">
-                <i class="fas fa-user-circle"></i> Fatihbykl
+    @{ foreach (var item in Model.lastActivities)
+        {
+            <div class="col-lg-2 col-md-3 col-sm-2">
+                <div class="border-456">
+                    <img width="150" height="225" src="@item.ImageURL" />
+                    <div class="activity-col-info">
+                        <i class="fas fa-user-circle"></i> @item.UserName
+                    </div>
+                </div>
+                <div class="activity-col-time">
+                    @item.Date
+                </div>
             </div>
-        </div>
-        <div class="activity-col-time">
-            Nov 22
-        </div>
-    </div>
-    <div class="col-lg-2 col-md-3 col-sm-2">
-        <div class="border-456">
-            <img width="150" height="225" src="~/media/oslo.jpg" />
-            <div class="activity-col-info">
-                <i class="fas fa-user-circle"></i> Fatihbykl
-            </div>
-        </div>
-        <div class="activity-col-time">
-            Nov 22
-        </div>
-    </div>
-    <div class="col-lg-2 col-md-3 col-sm-2">
-        <div class="border-456">
-            <img width="150" height="225" src="~/media/oslo.jpg" />
-            <div class="activity-col-info">
-                <i class="fas fa-user-circle"></i> Fatihbykl
-            </div>
-        </div>
-        <div class="activity-col-time">
-            Nov 22
-        </div>
-    </div>
-    <div class="col-lg-2 col-md-3 col-sm-2">
-        <div class="border-456">
-            <img width="150" height="225" src="~/media/oslo.jpg" />
-            <div class="activity-col-info">
-                <i class="fas fa-user-circle"></i> Fatihbykl
-            </div>
-        </div>
-        <div class="activity-col-time">
-            Nov 22
-        </div>
-    </div>
-    <div class="col-lg-2 col-md-3 col-sm-2">
-        <div class="border-456">
-            <img width="150" height="225" src="~/media/oslo.jpg" />
-            <div class="activity-col-info">
-                <i class="fas fa-user-circle"></i> Fatihbykl
-            </div>
-        </div>
-        <div class="activity-col-time">
-            Nov 22
-        </div>
-    </div>
-    <div class="col-lg-2 col-md-3 col-sm-2">
-        <div class="border-456">
-            <img width="150" height="225" src="~/media/oslo.jpg" />
-            <div class="activity-col-info">
-                <i class="fas fa-user-circle"></i> Fatihbykl
-            </div>
-        </div>
-        <div class="activity-col-time">
-            Nov 22
-        </div>
-    </div>
+        } }
 </div>
 <h2 class="col-heading">
     random movies
 </h2>
 <div class="row">
-    <div class="col-lg-2 col-md-3 col-sm-2">
-        <div class="border-456">
-            <img src="~/media/oslo.jpg" width="150" height="225" />
-        </div>
-    </div>
-    <div class="col-lg-2 col-md-3 col-sm-2">
-        <div class="border-456">
-            <img src="~/media/oslo.jpg" width="150" height="225" />
-        </div>
-    </div>
-    <div class="col-lg-2 col-md-3 col-sm-2">
-        <div class="border-456">
-            <img src="~/media/oslo.jpg" width="150" height="225" />
-        </div>
-    </div>
-    <div class="col-lg-2 col-md-3 col-sm-2">
-        <div class="border-456">
-            <img src="~/media/oslo.jpg" width="150" height="225" />
-        </div>
-    </div>
-    <div class="col-lg-2 col-md-3 col-sm-2">
-        <div class="border-456">
-            <img src="~/media/oslo.jpg" width="150" height="225" />
-        </div>
-    </div>
-    <div class="col-lg-2 col-md-3 col-sm-2">
-        <div class="border-456">
-            <img src="~/media/oslo.jpg" width="150" height="225" />
-        </div>
-    </div>
+    @{ foreach (var item in Model.randomMovies)
+        {
+            <div class="col-lg-2 col-md-3 col-sm-2">
+                <div class="border-456">
+                    <img src="@item.ImageURL" width="150" height="225" />
+                </div>
+            </div>
+        }
+    }
 </div>
 <h2 class="col-heading">
     reviews
 </h2>
 <div class="row">
-    <div class="col-md-6">
-        <div class="review">
-            <img src="~/media/oslo.jpg" />
-            <div class="pt-3">
-                <i class="fas fa-user-circle"></i> Fatihbykl
+    @{ foreach (var item in Model.lastReviews)
+        {
+            <div class="col-md-6">
+                <div class="review">
+                    <img src="@item.ImageURL" />
+                    <div class="pt-3">
+                        <i class="fas fa-user-circle"></i> @item.UserName
+                    </div>
+                    <div class="review-movie-title pt-1">@item.Title<small>(@item.Year)</small></div>
+                    <div class="pt-1">5 Star</div>
+                    <div class="review-text">
+                        @item.Review
+                    </div>
+                </div>
+                <div class="hr-border"></div>
             </div>
-            <div class="review-movie-title pt-1">Oslo, 31 August <small>(2013)</small></div>
-            <div class="pt-1">5 Star</div>
-            <div class="review-text">
-                this was one of the most joyous experiences i’ve had all year and no i’m not joking in the slightest
-            </div>
-        </div>
-        <div class="hr-border"></div>
-        <div class="review">
-            <img src="~/media/oslo.jpg" />
-            <div class="pt-3">
-                <i class="fas fa-user-circle"></i> Fatihbykl
-            </div>
-            <div class="review-movie-title pt-1">Oslo, 31 August <small>(2013)</small></div>
-            <div class="pt-1">5 Star</div>
-            <div class="review-text">
-                this was one of the most joyous experiences i’ve had all year and no i’m not joking in the slightest
-            </div>
-        </div>
-        <div class="hr-border"></div>
-    </div>
-    <div class="col-md-6">
-        <div class="review">
-            <img src="~/media/oslo.jpg" />
-            <div class="pt-3">
-                <i class="fas fa-user-circle"></i> Fatihbykl
-            </div>
-            <div class="review-movie-title pt-1">Oslo, 31 August <small>(2013)</small></div>
-            <div class="pt-1">5 Star</div>
-            <div class="review-text">
-                this was one of the most joyous experiences i’ve had all year and no i’m not joking in the slightest
-            </div>
-        </div>
-        <div class="hr-border"></div>
-        <div class="review">
-            <img src="~/media/oslo.jpg" />
-            <div class="pt-3">
-                <i class="fas fa-user-circle"></i> Fatihbykl
-            </div>
-            <div class="review-movie-title pt-1">Oslo, 31 August <small>(2013)</small></div>
-            <div class="pt-1">5 Star</div>
-            <div class="review-text">
-                this was one of the most joyous experiences i’ve had all year and no i’m not joking in the slightest
-            </div>
-        </div>
-        <div class="hr-border"></div>
-    </div>
+        } 
+     }
+
+
 </div>

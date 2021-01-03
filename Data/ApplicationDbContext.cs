@@ -21,7 +21,6 @@ namespace WebProgramlamaProje.Data
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
-            builder.Entity<UserMovie>().HasKey(e => new { e.IDUser, e.IDMovie});
         }
     }
 }

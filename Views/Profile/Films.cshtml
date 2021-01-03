@@ -1,18 +1,14 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
+﻿@model IEnumerable<WebProgramlamaProje.Models.UserMovieQuery>
 <div class="profile-header">
     <nav class="profile-nav">
         <ul>
             <li class="img-username">
-                <img src="~/media/profile-user.png" /> <span>@Model.UserName</span>
+                <img src="~/media/profile-user.png" /> <span>@ViewBag.username</span>
             </li>
-            <li><a asp-action="Index" asp-route-username="@User.Identity.Name">Profile</a></li>
-            <li class="active"><a asp-action="Films" asp-route-username="@User.Identity.Name">Films</a></li>
-            <li><a asp-action="Reviews" asp-route-username="@User.Identity.Name">Reviews</a></li>
-            <li><a asp-action="EditProfile" asp-route-username="@User.Identity.Name">Edit Profile</a></li>
+            <li><a asp-action="Index" asp-route-username="@ViewBag.username">Profile</a></li>
+            <li class="active"><a asp-action="Films" asp-route-username="@ViewBag.username">Films</a></li>
+            <li><a asp-action="Reviews" asp-route-username="@ViewBag.username">Reviews</a></li>
+            <li><a asp-action="EditProfile" asp-route-username="@ViewBag.username">Edit Profile</a></li>
         </ul>
     </nav>
 </div>
@@ -24,16 +20,23 @@
         <th>Rating</th>
         <th>Review</th>
     </tr>
+    @foreach (var item in Model)
+    {
     <tr>
-        <td>16 Haziran 2020</td>
+        <td>@item.Date</td>
         <td class="film-title">
-            <img src="~/media/oslo.jpg" width="35" height="50" />
-            A Girl Walks Home Alone at Night
+            <img src="@item.ImageURL" width="35" height="50" />
+            @item.Title
         </td>
-        <td>2014</td>
-        <td>*****</td>
+        <td>@item.Year</td>
+        <td>@item.Rating</td>
         <td>
-            <i class="far fa-comment-dots"></i>
+            @{ if (item.Review != null)
+                {
+                    <i class="far fa-comment-dots"></i>
+                }
+             }
         </td>
     </tr>
+    }
 </table>
