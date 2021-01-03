@@ -10,16 +10,16 @@
             <li class="img-username">
                 <img src="~/media/profile-user.png" /> <span>@ViewBag.username</span>
             </li>
-            <li class="active"><a asp-action="Index" asp-route-username="@ViewBag.username" >Profile</a></li>
-            <li><a asp-action="Films" asp-route-username="@ViewBag.username">Films</a></li>
-            <li><a asp-action="Reviews" asp-route-username="@ViewBag.username">Reviews</a></li>
+            <li class="active"><a asp-action="Index" asp-route-username="@ViewBag.username" >@Localizer["Profile"]</a></li>
+            <li><a asp-action="Films" asp-route-username="@ViewBag.username">@Localizer["Films"]</a></li>
+            <li><a asp-action="Reviews" asp-route-username="@ViewBag.username">@Localizer["Reviews"]</a></li>
         </ul>
     </nav>
 </div>
 <div class="row">
     <div class="col-md-9">
         <h2 class="col-heading">
-            recent activity
+            @Localizer["RecentActivity"]
         </h2>
         <div class="row">
             @{ foreach (var item in Model.act)
@@ -34,7 +34,7 @@
 
         </div>
         <h2 class="col-heading">
-            Recent Reviews
+            @Localizer["RecentReviews"]
         </h2>
         @{ foreach (var item in Model.rev)
             {
@@ -54,9 +54,5 @@
     </div>
     <div class="col-md-3">
         <h2 class="col-heading">fatihbykl</h2>
-        Films: 389
-        Reviews: 5
-        Last Online: tarih
-        @Localizer["hi"].Value
     </div>
 </div>
